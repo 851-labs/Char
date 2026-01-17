@@ -1,0 +1,7 @@
+{
+  "name": "char",
+  "private": true,
+  "scripts": {
+    "release": "bun --env-file .env ./scripts/release.ts"
+  }
+}

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F3B1D0A72F0A123400112233 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = F3B1D0A82F0A123400112233 /* Sparkle */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		BC9B30A92E9C4961009237D0 /* char.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = char.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,19 +27,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3B1D0A72F0A123400112233 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		BC9B30A02E9C4960009237D0 = {
-			isa = PBXGroup;
-			children = (
-				BC9B30AB2E9C4961009237D0 /* char */,
-				BC9B30AA2E9C4961009237D0 /* Products */,
-			);
-			sourceTree = "<group>";
 		};
 		BC9B30AA2E9C4961009237D0 /* Products */ = {
 			isa = PBXGroup;
@@ -65,6 +59,7 @@
 			);
 			name = char;
 			packageProductDependencies = (
+				F3B1D0A82F0A123400112233 /* Sparkle */,
 			);
 			productName = char;
 			productReference = BC9B30A92E9C4961009237D0 /* char.app */;
@@ -93,6 +88,9 @@
 				Base,
 			);
 			mainGroup = BC9B30A02E9C4960009237D0;
+			packageReferences = (
+				F3B1D0A62F0A123400112233 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BC9B30AA2E9C4961009237D0 /* Products */;
@@ -114,6 +112,14 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin XCSwiftPackageProductDependency section */
+		F3B1D0A82F0A123400112233 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Sparkle;
+			package = F3B1D0A62F0A123400112233 /* XCRemoteSwiftPackageReference "Sparkle" */;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BC9B30A52E9C4961009237D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -123,6 +129,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F3B1D0A62F0A123400112233 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCBuildConfiguration section */
 		BC9B30B22E9C4962009237D0 /* Debug */ = {
@@ -254,6 +271,8 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = char;
+				INFOPLIST_KEY_SUFeedURL = "https://github.com/851-labs/char/releases/latest/download/appcast.xml";
+				INFOPLIST_KEY_SUPublicEDKey = "csUeIYVMDqMX5qihXjjy8ux3LBUFJ7FGnNLkxXMuo4o=";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -299,6 +318,8 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = char;
+				INFOPLIST_KEY_SUFeedURL = "https://github.com/851-labs/char/releases/latest/download/appcast.xml";
+				INFOPLIST_KEY_SUPublicEDKey = "csUeIYVMDqMX5qihXjjy8ux3LBUFJ7FGnNLkxXMuo4o=";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;

@@ -5,10 +5,13 @@
 //  Created by Alexandru Turcanu on 10/12/25.
 //
 
+import Sparkle
 import SwiftUI
 
 @main
 struct charApp: App {
+  private let updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+
   var body: some Scene {
     WindowGroup {
       ContentView()
@@ -16,6 +19,11 @@ struct charApp: App {
     }
     .commands {
       InspectorCommands()
+      CommandGroup(after: .appInfo) {
+        Button("Check for Updates…") {
+          updaterController.checkForUpdates(nil)
+        }
+      }
     }
   }
 }
