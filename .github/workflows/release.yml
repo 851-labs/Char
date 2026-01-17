@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   release:
-    runs-on: [self-hosted, macOS, macos-26]
+    runs-on: macos-26
 
     steps:
       - name: Checkout
