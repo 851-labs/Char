@@ -292,19 +292,21 @@ const signSparkle = async (appBundlePath: string, identity: string) => {
   const signIfExists = async (target: string, args: string[]) => {
     try {
       await access(target);
-      run("/usr/bin/codesign", ["--force", "--options", "runtime", "--timestamp", "--sign", identity, ...args, target]);
+      run("/usr/bin/codesign", ["--force", "--options", "runtime", "--timestamp", "--entitlements", sparkleEntitlements, "--sign", identity, ...args, target]);
     } catch {
       // ignore missing Sparkle components
     }
   };
 
-  await signIfExists(path.join(updaterApp, "Contents/MacOS/Updater"), []);
-  await signIfExists(autoupdate, []);
-  await signIfExists(path.join(downloaderXpc, "Contents/MacOS/Downloader"), []);
-  await signIfExists(path.join(installerXpc, "Contents/MacOS/Installer"), []);
-  await signIfExists(updaterApp, []);
-  await signIfExists(downloaderXpc, []);
-  await signIfExists(installerXpc, []);
+  const sparkleEntitlements = path.join(rootDir, "char", "Resources", "sparkle.entitlements");
+
+  await signIfExists(path.join(updaterApp, "Contents/MacOS/Updater"), ["--entitlements", sparkleEntitlements]);
+  await signIfExists(autoupdate, ["--entitlements", sparkleEntitlements]);
+  await signIfExists(path.join(downloaderXpc, "Contents/MacOS/Downloader"), ["--entitlements", sparkleEntitlements]);
+  await signIfExists(path.join(installerXpc, "Contents/MacOS/Installer"), ["--entitlements", sparkleEntitlements]);
+  await signIfExists(updaterApp, ["--entitlements", sparkleEntitlements]);
+  await signIfExists(downloaderXpc, ["--entitlements", sparkleEntitlements]);
+  await signIfExists(installerXpc, ["--entitlements", sparkleEntitlements]);
 
   await signIfExists(sparkleFramework, []);
 };
