@@ -8,9 +8,23 @@
 import Sparkle
 import SwiftUI
 
+private enum UpdateFeed {
+  static let url = "https://github.com/851-labs/char/releases/latest/download/appcast.xml"
+}
+
+private final class UpdaterDelegate: NSObject, SPUUpdaterDelegate {
+  func feedURLString(for updater: SPUUpdater) -> String? {
+    UpdateFeed.url
+  }
+}
+
 @main
 struct charApp: App {
-  private let updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+  private let updaterController = SPUStandardUpdaterController(
+    startingUpdater: true,
+    updaterDelegate: UpdaterDelegate(),
+    userDriverDelegate: nil
+  )
 
   var body: some Scene {
     WindowGroup {
