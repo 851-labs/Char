@@ -123,7 +123,7 @@ const main = async () => {
         "-derivedDataPath",
         derivedData,
         "-destination",
-        "platform=macOS",
+        "platform=macOS,arch=arm64",
         `CODE_SIGN_IDENTITY=${devIdApplication}`,
         "CODE_SIGN_STYLE=Manual",
         "build",
