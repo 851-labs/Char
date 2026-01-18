@@ -5,7 +5,6 @@
 </div>
 
 <div align="center">
-  <p><b>flat</b></p>
   <a href="https://github.com/851-labs/char/releases/latest">
     <img src="https://img.shields.io/badge/macOS-26.0%2B-blue?logo=apple&logoColor=white&style=flat" alt="macOS 26.0+">
   </a>
@@ -19,43 +18,6 @@
   <a href="https://github.com/851-labs/char/releases/latest">
     <img src="https://img.shields.io/github/downloads/851-labs/char/total?label=downloads&style=flat" alt="Downloads total">
   </a>
-
-  <p><b>flat-square</b></p>
-  <a href="https://github.com/851-labs/char/releases/latest">
-    <img src="https://img.shields.io/badge/macOS-26.0%2B-blue?logo=apple&logoColor=white&style=flat-square" alt="macOS 26.0+">
-  </a>
-  <img src="https://img.shields.io/badge/Swift-6.2-f05138?logo=swift&logoColor=white&style=flat-square" alt="Swift 6.2">
-  <a href="https://github.com/851-labs/homebrew-tap">
-    <img src="https://img.shields.io/badge/Homebrew-851--labs%2Ftap-fbb040?logo=homebrew&logoColor=white&style=flat-square" alt="Homebrew tap">
-  </a>
-  <a href="https://github.com/851-labs/char/releases/latest/download/char.dmg">
-    <img src="https://img.shields.io/badge/Download-macOS-black?logo=apple&logoColor=white&style=flat-square" alt="Download macOS">
-  </a>
-  <a href="https://github.com/851-labs/char/releases/latest">
-    <img src="https://img.shields.io/github/downloads/851-labs/char/total?label=downloads&style=flat-square" alt="Downloads total">
-  </a>
-
-  <p><b>for-the-badge</b></p>
-  <a href="https://github.com/851-labs/char/releases/latest">
-    <img src="https://img.shields.io/badge/macOS-26.0%2B-blue?logo=apple&logoColor=white&style=for-the-badge" alt="macOS 26.0+">
-  </a>
-  <img src="https://img.shields.io/badge/Swift-6.2-f05138?logo=swift&logoColor=white&style=for-the-badge" alt="Swift 6.2">
-  <a href="https://github.com/851-labs/char/releases/latest">
-    <img src="https://img.shields.io/github/downloads/851-labs/char/total?label=downloads&style=for-the-badge" alt="Downloads total">
-  </a>
-  <a href="https://github.com/851-labs/char/releases/latest/download/char.dmg">
-    <img src="https://img.shields.io/badge/Download-macOS-black?logo=apple&logoColor=white&style=for-the-badge" alt="Download macOS">
-  </a>
-  <a href="https://github.com/851-labs/homebrew-tap">
-    <img src="https://img.shields.io/badge/Homebrew-851--labs%2Ftap-fbb040?logo=homebrew&logoColor=white&style=for-the-badge" alt="Homebrew tap">
-  </a>
-  <a href="https://github.com/851-labs/char/releases/latest/download/char.dmg">
-    <img src="https://img.shields.io/badge/Download-macOS-black?logo=apple&logoColor=white&style=for-the-badge" alt="Download macOS">
-  </a>
-  <a href="https://github.com/851-labs/char/releases/latest">
-    <img src="https://img.shields.io/github/downloads/851-labs/char/total?label=downloads&style=for-the-badge" alt="Downloads total">
-  </a>
-
 </div>
 
 ## 🖼️ Showcase
@@ -68,6 +30,8 @@
 
 Download [the latest release](https://github.com/851-labs/char/releases/latest) and drag it to your Applications folder.
 
+[![Download macOS](https://img.shields.io/badge/Download-macOS-black?logo=apple&logoColor=white&style=for-the-badge)](https://github.com/851-labs/char/releases/latest/download/char.dmg)
+
 ### Homebrew
 
 ```
@@ -76,6 +40,7 @@ brew install --cask 851-labs/tap/char
 
 ## 🛠️ Tech Stack
 
+- [OpenCode](https://opencode.ai/) - AI Coding Agent
 - [Swift 6.2](https://www.swift.org/)
 - [SwiftUI](https://developer.apple.com/documentation/swiftui) - UI Framework
 - [Sparkle](https://sparkle-project.org/) - Software Update Framework
