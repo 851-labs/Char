@@ -11,6 +11,9 @@
   </a>
 </div>
 
+## 🖼️ Showcase
+
+![char app overview](docs/screenshots/char-app-overview.png)  
 
 ## 📦 Installation
 
