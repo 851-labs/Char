@@ -102,6 +102,14 @@ brew update
 brew upgrade --cask 851-labs/tap/char
 ```
 
+### 8) Local Release (Fastlane)
+
+If you need a local release build, run:
+
+```
+bundle exec fastlane release
+```
+
 ## Sparkle Feed
 
 The appcast URL is:

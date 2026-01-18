@@ -50,10 +50,13 @@ jobs:
             brew install sparkle
           fi
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
 
-      - name: Run release script
+      - name: Run release lane
         env:
           DEV_ID_APPLICATION: ${{ secrets.DEV_ID_APPLICATION }}
           AC_API_KEY_ID: ${{ secrets.AC_API_KEY_ID }}
@@ -61,7 +64,7 @@ jobs:
           AC_API_KEY: ${{ secrets.AC_API_KEY }}
           SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
         run: |
-          bun ./scripts/release.ts
+          bundle exec fastlane release
 
       - name: Create GitHub release
         env:

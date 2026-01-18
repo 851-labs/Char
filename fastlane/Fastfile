@@ -1,0 +1,170 @@
+default_platform(:mac)
+
+platform :mac do
+  desc "Build, sign, notarize, and publish a release"
+  lane :release do
+    project_name = "char"
+    scheme = "char"
+    configuration = "Release"
+    build_dir = File.expand_path("../build", __dir__)
+    derived_data = File.join(build_dir, "DerivedData")
+    app_path = File.join(build_dir, "#{project_name}.app")
+    app_zip = File.join(build_dir, "#{project_name}.zip")
+    dmg_path = File.join(build_dir, "#{project_name}.dmg")
+    release_dir = File.join(build_dir, "release")
+
+    dev_id_application = ENV.fetch("DEV_ID_APPLICATION")
+    api_key_id = ENV.fetch("AC_API_KEY_ID")
+    api_key = ENV.fetch("AC_API_KEY")
+    api_issuer_id = ENV["AC_API_ISSUER_ID"]
+    sparkle_private_key = ENV.fetch("SPARKLE_PRIVATE_KEY")
+
+    FileUtils.mkdir_p(build_dir)
+    FileUtils.mkdir_p(release_dir)
+
+    notary_dir = Dir.mktmpdir("notary-")
+    notary_key_path = File.join(notary_dir, "AuthKey.p8")
+    File.write(notary_key_path, api_key)
+
+    begin
+      sh("xcodebuild",
+         "-project", "#{project_name}.xcodeproj",
+         "-scheme", scheme,
+         "-configuration", configuration,
+         "-derivedDataPath", derived_data,
+         "-destination", "platform=macOS,arch=arm64",
+         "CODE_SIGN_IDENTITY=#{dev_id_application}",
+         "CODE_SIGN_STYLE=Manual",
+         "build")
+
+      built_app = File.join(derived_data, "Build/Products", configuration, "#{project_name}.app")
+      UI.user_error!("Built app not found at #{built_app}") unless File.directory?(built_app)
+
+      FileUtils.rm_rf(app_path)
+      FileUtils.rm_f(dmg_path)
+      FileUtils.rm_f(app_zip)
+      FileUtils.cp_r(built_app, app_path)
+
+      sign_sparkle(app_path, dev_id_application)
+      sign_app(app_path, dev_id_application)
+
+      sh("/usr/bin/ditto", "-c", "-k", "--keepParent", app_path, app_zip)
+
+      notarize(notary_key_path, api_key_id, api_issuer_id, app_zip, "app")
+      sh("xcrun", "stapler", "staple", app_path)
+      FileUtils.rm_f(app_zip)
+
+      dmg_dir = File.join(build_dir, "dmg")
+      FileUtils.rm_rf(dmg_dir)
+      FileUtils.mkdir_p(dmg_dir)
+      FileUtils.cp_r(app_path, File.join(dmg_dir, "#{project_name}.app"))
+
+      sh("hdiutil", "create",
+         "-volname", project_name,
+         "-srcfolder", dmg_dir,
+         "-ov",
+         "-format", "UDZO",
+         dmg_path)
+
+      sh("codesign", "--force", "--timestamp", "--sign", dev_id_application, dmg_path)
+      notarize(notary_key_path, api_key_id, api_issuer_id, dmg_path, "dmg")
+      sh("xcrun", "stapler", "staple", dmg_path)
+
+      sparkle_bin = locate_sparkle_bin
+      sign_update = File.join(sparkle_bin, "sign_update")
+      generate_appcast = File.join(sparkle_bin, "generate_appcast")
+
+      sparkle_key_path = File.join(build_dir, "sparkle_private_key")
+      File.write(sparkle_key_path, sparkle_private_key.strip)
+
+      begin
+        sh(sign_update, "-f", sparkle_key_path, dmg_path)
+        FileUtils.cp(dmg_path, File.join(release_dir, File.basename(dmg_path)))
+        sh(generate_appcast, "--ed-key-file", sparkle_key_path, "-o", File.join(release_dir, "appcast.xml"), release_dir)
+      ensure
+        FileUtils.rm_f(sparkle_key_path)
+      end
+
+      UI.message("Release artifacts ready in #{release_dir}")
+    ensure
+      FileUtils.rm_rf(notary_dir)
+    end
+  end
+
+  private_lane :sign_sparkle do |app_path, identity|
+    sparkle_framework = File.join(app_path, "Contents/Frameworks/Sparkle.framework")
+    sparkle_version = File.join(sparkle_framework, "Versions/B")
+    updater_app = File.join(sparkle_version, "Updater.app")
+    autoupdate = File.join(sparkle_version, "Autoupdate")
+    downloader_xpc = File.join(sparkle_version, "XPCServices/Downloader.xpc")
+    installer_xpc = File.join(sparkle_version, "XPCServices/Installer.xpc")
+    sparkle_entitlements = File.expand_path("../char/Resources/sparkle.entitlements", __dir__)
+
+    sign_if_exists(File.join(updater_app, "Contents/MacOS/Updater"), identity, sparkle_entitlements)
+    sign_if_exists(autoupdate, identity, sparkle_entitlements)
+    sign_if_exists(File.join(downloader_xpc, "Contents/MacOS/Downloader"), identity, sparkle_entitlements)
+    sign_if_exists(File.join(installer_xpc, "Contents/MacOS/Installer"), identity, sparkle_entitlements)
+    sign_if_exists(updater_app, identity, sparkle_entitlements)
+    sign_if_exists(downloader_xpc, identity, sparkle_entitlements)
+    sign_if_exists(installer_xpc, identity, sparkle_entitlements)
+    sign_if_exists(sparkle_framework, identity)
+  end
+
+  private_lane :sign_app do |app_path, identity|
+    entitlements_path = File.expand_path("../char/Resources/char.entitlements", __dir__)
+    sh("/usr/bin/codesign", "--force", "--options", "runtime", "--timestamp", "--entitlements", entitlements_path, "--sign", identity, app_path)
+  end
+
+  private_lane :sign_if_exists do |target, identity, entitlements_path = nil|
+    return unless File.exist?(target)
+
+    args = ["/usr/bin/codesign", "--force", "--options", "runtime", "--timestamp", "--sign", identity]
+    args += ["--entitlements", entitlements_path] if entitlements_path
+    args << target
+    sh(*args)
+  end
+
+  private_lane :notarize do |key_path, key_id, issuer_id, target, label|
+    args = ["xcrun", "notarytool", "submit", target, "--key", key_path, "--key-id", key_id, "--wait", "--output-format", "json"]
+    args += ["--issuer", issuer_id] if issuer_id && !issuer_id.empty?
+
+    result = sh(*args, log: false)
+    UI.message(result) unless result.to_s.empty?
+
+    status = nil
+    begin
+      parsed = JSON.parse(result)
+      status = parsed["status"]
+      if status && status != "Accepted"
+        UI.user_error!("Notarization failed for #{label}: #{parsed}")
+      end
+    rescue JSON::ParserError
+      UI.user_error!("Notarization failed for #{label}: #{result}")
+    end
+  end
+
+  private_lane :locate_sparkle_bin do
+    env_bin = ENV["SPARKLE_BIN"]
+    return env_bin if env_bin && File.executable?(File.join(env_bin, "generate_appcast"))
+
+    candidates = [
+      File.expand_path("~/.local/bin"),
+      "/opt/homebrew/Caskroom/sparkle",
+      "/usr/local/Caskroom/sparkle"
+    ]
+
+    candidates.each do |candidate|
+      if File.directory?(candidate) && candidate.end_with?("sparkle")
+        versions = Dir.children(candidate).sort.reverse
+        versions.each do |version|
+          bin = File.join(candidate, version, "bin")
+          return bin if File.executable?(File.join(bin, "generate_appcast"))
+        end
+      elsif File.executable?(File.join(candidate, "generate_appcast"))
+        return candidate
+      end
+    end
+
+    UI.user_error!("Missing Sparkle tools. Install with: brew install sparkle")
+  end
+end
