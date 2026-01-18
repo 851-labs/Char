@@ -11,16 +11,30 @@
   </a>
 </div>
 
----
 
-## License
+## 📦 Installation
+
+### Direct Download
+
+Download char and drag it to your Applications folder.
+
+### Homebrew
+
+```
+brew install --cask 851-labs/tap/char
+```
+
+## 🛠️ Tech Stack
+
+- [Swift 6.2](https://www.swift.org/)
+- [SwiftUI](https://developer.apple.com/documentation/swiftui) - UI Framework
+- [Sparkle](https://sparkle-project.org/) - Software Update Framework
+- [Bun](https://bun.com/) - Scripts
+
+## 📜 License
 
 This project is released under the MIT License. See [LICENSE](LICENSE.md) for details.
 
-## Support
+## 🌟 Support
 
-If you like this project, please consider giving it a ⭐️
-
----
-
-<p align="center">Crafted with care by Alexandru</p>
+If you like this project, please consider giving it a star. ️
