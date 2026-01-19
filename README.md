@@ -18,6 +18,12 @@
   <a href="https://github.com/851-labs/char/releases/latest">
     <img src="https://img.shields.io/github/downloads/851-labs/char/total?label=downloads&style=flat" alt="Downloads total">
   </a>
+  <a href="https://deepwiki.com/851-labs/char">
+    <img src="https://img.shields.io/badge/DeepWiki-Docs-4b32c3?style=flat" alt="DeepWiki">
+  </a>
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/badge/License-MIT-blue?style=flat" alt="MIT License">
+  </a>
 </div>
 
 ## 🖼️ Showcase
