@@ -26,11 +26,11 @@
   </a>
 </div>
 
-## 🖼️ Showcase
+## Showcase
 
 ![char app overview](docs/screenshots/char-app-overview.png)  
 
-## 📦 Installation
+## Installation
 
 ### Direct Download
 
@@ -44,7 +44,7 @@ Download [the latest release](https://github.com/851-labs/char/releases/latest) 
 brew install --cask 851-labs/tap/char
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - [OpenCode](https://opencode.ai/) - AI Coding Agent
 - [Swift 6.2](https://www.swift.org/)
@@ -52,10 +52,10 @@ brew install --cask 851-labs/tap/char
 - [Sparkle](https://sparkle-project.org/) - Software Update Framework
 - [Bun](https://bun.com/) - Scripts
 
-## 📜 License
+## License
 
 This project is released under the MIT License. See [LICENSE](LICENSE.md) for details.
 
-## 🌟 Support
+## Support
 
 If you like this project, please consider giving it a star. ️
