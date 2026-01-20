@@ -32,14 +32,14 @@ jobs:
 
       - name: Import signing certificate
         env:
-          DEV_ID_CERT_P12: ${{ secrets.DEV_ID_CERT_P12 }}
-          DEV_ID_CERT_PASSWORD: ${{ secrets.DEV_ID_CERT_PASSWORD }}
+          DEVELOPER_ID_CERT_P12: ${{ secrets.DEVELOPER_ID_CERT_P12 }}
+          DEVELOPER_ID_CERT_PASSWORD: ${{ secrets.DEVELOPER_ID_CERT_PASSWORD }}
         run: |
-          echo "$DEV_ID_CERT_P12" | base64 --decode > signing-cert.p12
+          echo "$DEVELOPER_ID_CERT_P12" | base64 --decode > signing-cert.p12
           security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
           security set-keychain-settings -lut 21600 build.keychain
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
-          security import signing-cert.p12 -k build.keychain -P "$DEV_ID_CERT_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
+          security import signing-cert.p12 -k build.keychain -P "$DEVELOPER_ID_CERT_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
           security list-keychains -d user -s build.keychain
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" build.keychain
           rm -f signing-cert.p12
@@ -56,10 +56,10 @@ jobs:
 
       - name: Run appdrop release
         env:
-          DEVELOPER_ID_APPLICATION: ${{ secrets.DEV_ID_APPLICATION }}
-          APP_STORE_CONNECT_KEY_ID: ${{ secrets.AC_API_KEY_ID }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.AC_API_ISSUER_ID }}
-          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.AC_API_KEY }}
+          DEVELOPER_ID_APPLICATION: ${{ secrets.DEVELOPER_ID_APPLICATION }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
           SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
         run: |
           appdrop release
