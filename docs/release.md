@@ -117,7 +117,7 @@ git push
 appdrop release
 ```
 
-### 8) Validate Install
+### 9) Validate Install
 
 ```
 brew update
