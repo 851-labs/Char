@@ -50,18 +50,19 @@ jobs:
             brew install sparkle
           fi
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Install appdrop
+        run: |
+          brew install 851-labs/tap/appdrop
 
-      - name: Run release script
+      - name: Run appdrop release
         env:
-          DEV_ID_APPLICATION: ${{ secrets.DEV_ID_APPLICATION }}
-          AC_API_KEY_ID: ${{ secrets.AC_API_KEY_ID }}
-          AC_API_ISSUER_ID: ${{ secrets.AC_API_ISSUER_ID }}
-          AC_API_KEY: ${{ secrets.AC_API_KEY }}
+          DEVELOPER_ID_APPLICATION: ${{ secrets.DEV_ID_APPLICATION }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.AC_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.AC_API_ISSUER_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.AC_API_KEY }}
           SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
         run: |
-          bun ./scripts/release.ts
+          appdrop release
 
       - name: Create GitHub release
         env:
