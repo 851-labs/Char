@@ -113,13 +113,7 @@ git commit -m "bump char to 1.0.9"
 git push
 ```
 
-### 8) Local Release (appdrop)
-
-```
-appdrop release --verbose --no-input
-```
-
-### 9) Validate Install
+### 8) Validate Install
 
 ```
 brew update
