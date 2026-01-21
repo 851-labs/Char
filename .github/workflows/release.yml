@@ -25,13 +25,7 @@ jobs:
           DEVELOPER_ID_CERT_P12: ${{ secrets.DEVELOPER_ID_CERT_P12 }}
           DEVELOPER_ID_CERT_PASSWORD: ${{ secrets.DEVELOPER_ID_CERT_PASSWORD }}
         run: |
-          appdrop setup-ci --write-github-env
-
-      - name: Set up Sparkle tools
-        run: |
-          if ! command -v generate_appcast >/dev/null; then
-            brew install sparkle
-          fi
+          appdrop setup-ci --write-github-env --install-sparkle
 
       - name: Run appdrop release
         env:
