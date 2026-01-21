@@ -29,7 +29,7 @@ appdrop automatically loads `.env` from the repo root.
 
 - Ensure your machine is running macOS 26 and Xcode 17+.
 - Install `appdrop`: `brew install 851-labs/tap/appdrop`.
-- CI currently uses `runs-on: macos-26`. `appdrop setup-ci --install-sparkle` installs Sparkle tools when missing.
+- CI currently uses `runs-on: macos-26`. `appdrop setup-ci` installs Sparkle tools when `SPARKLE_PRIVATE_KEY` is set.
 
 ### 2) Bump Version
 
