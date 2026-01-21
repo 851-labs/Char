@@ -38,12 +38,10 @@ jobs:
         run: |
           appdrop release --verbose
 
-      - name: Create GitHub release
+      - name: Publish GitHub release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" \
-            --title "${GITHUB_REF_NAME}" \
-            --notes "Release ${GITHUB_REF_NAME}" \
-            build/release/char.dmg \
-            build/release/appcast.xml
+          appdrop publish \
+            --asset build/release/char.dmg \
+            --asset build/release/appcast.xml
