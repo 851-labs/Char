@@ -27,6 +27,7 @@ jobs:
       - name: Install appdrop
         run: |
           brew install 851-labs/tap/appdrop
+          brew upgrade 851-labs/tap/appdrop || true
 
       - name: Set up CI signing environment
         env:
