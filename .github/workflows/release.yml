@@ -36,7 +36,7 @@ jobs:
           APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
           SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
         run: |
-          appdrop release --verbose --no-input
+          appdrop release --verbose
 
       - name: Create GitHub release
         env:
