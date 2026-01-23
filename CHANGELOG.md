@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.54 - 2026-01-23
+- chore: bump version to 1.0.54
+- fix: apply Developer ID signing to Release config
+
 ## 1.0.53 - 2026-01-23
 - chore: bump version to 1.0.53
 - fix: set Developer ID signing for Release archives
