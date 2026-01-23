@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.46 - 2026-01-22
+- chore: bump version to 1.0.46
+- chore: update app display name to Char
+
 ## 1.0.16 - 2026-01-17
 - chore: bump version to 1.0.16
 - fix: add Sparkle network entitlements
