@@ -1,6 +1,6 @@
 # Release Process
 
-This document outlines how to ship a new macOS release for Char, including Sparkle updates and Homebrew distribution.
+This document outlines how to ship a new macOS release for char, including Sparkle updates and Homebrew distribution.
 
 ## Prerequisites
 
@@ -148,6 +148,10 @@ For faster local iteration, you can skip notarization:
 ```
 appdrop release --no-notarize
 ```
+
+### Sparkle updater issues
+
+If Sparkle reports installer or updater errors, ensure the app was built via the archive/export flow (appdrop does this by default). Avoid manually re-signing Sparkle helpers.
 
 ## Sparkle Feed
 

@@ -16,7 +16,7 @@ struct ContentView: View {
         TextEditor(text: $text)
           .font(.body)
       }
-      .navigationTitle("Char")
+      .navigationTitle("char")
       .navigationSubtitle("^[\(text.wordCount) word](inflect: true) • ^[\(text.characterCount) character](inflect: true)")
       .toolbarRole(.editor)
       .toolbarTitleDisplayMode(.inline)
