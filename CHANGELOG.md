@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.60 - 2026-01-25
+- chore: remove SPARKLE_PRIVATE_KEY from setup-ci
+
 ## 1.0.59 - 2026-01-24
 - chore: release validation run
 
