@@ -50,7 +50,6 @@ brew install --cask 851-labs/tap/char
 
 ## Tech Stack
 
-- [OpenCode](https://opencode.ai/) - AI Coding Agent
 - [Swift 6.2](https://www.swift.org/)
 - [SwiftUI](https://developer.apple.com/documentation/swiftui) - UI Framework
 - [Sparkle](https://sparkle-project.org/) - Software Update Framework
