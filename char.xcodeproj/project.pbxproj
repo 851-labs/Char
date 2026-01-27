@@ -15,12 +15,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		BC0FB90B2F22A50800BE0AA0 /* Exceptions for "char" folder in "char" target */ = {
+		BC0FB90B2F22A50800BE0AA0 /* Exceptions for "char" folder in "Char" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Info.plist,
 			);
-			target = BC9B30A82E9C4961009237D0 /* char */;
+			target = BC9B30A82E9C4961009237D0 /* Char */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -28,7 +28,7 @@
 		BC9B30AB2E9C4961009237D0 /* char */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				BC0FB90B2F22A50800BE0AA0 /* Exceptions for "char" folder in "char" target */,
+				BC0FB90B2F22A50800BE0AA0 /* Exceptions for "char" folder in "Char" target */,
 			);
 			path = char;
 			sourceTree = "<group>";
@@ -69,7 +69,7 @@
 /* Begin PBXNativeTarget section */
 		BC9B30A82E9C4961009237D0 /* Char */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC9B30B42E9C4962009237D0 /* Build configuration list for PBXNativeTarget "char" */;
+			buildConfigurationList = BC9B30B42E9C4962009237D0 /* Build configuration list for PBXNativeTarget "Char" */;
 			buildPhases = (
 				BC9B30A52E9C4961009237D0 /* Sources */,
 				BC9B30A62E9C4961009237D0 /* Frameworks */,
@@ -98,7 +98,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					BC9B30A82E9C4961009237D0 = {
 						CreatedOnToolsVersion = 26.0.1;
@@ -122,7 +122,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BC9B30A82E9C4961009237D0 /* char */,
+				BC9B30A82E9C4961009237D0 /* Char */,
 			);
 		};
 /* End PBXProject section */
@@ -206,6 +206,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -262,6 +263,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -278,6 +280,7 @@
 				DEVELOPMENT_TEAM = WH4QW9ND3J;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -316,6 +319,7 @@
 				DEVELOPMENT_TEAM = WH4QW9ND3J;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -354,7 +358,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BC9B30B42E9C4962009237D0 /* Build configuration list for PBXNativeTarget "char" */ = {
+		BC9B30B42E9C4962009237D0 /* Build configuration list for PBXNativeTarget "Char" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC9B30B52E9C4962009237D0 /* Debug */,
