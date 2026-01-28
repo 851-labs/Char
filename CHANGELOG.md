@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.62 - 2026-01-27
+- feat: add AGENTS guide
+- docs: migrate release guide to skill
+- chore: apply Xcode recommended settings
+- chore: remove unused Sparkle entitlements
+
 ## 1.0.61 - 2026-01-26
 - chore: enable dead code stripping
 
